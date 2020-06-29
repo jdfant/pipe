@@ -28,7 +28,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/main']], 
+                    branches: [[name: '*/develop']], 
                     userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
                 ])
             }
