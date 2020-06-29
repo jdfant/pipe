@@ -28,7 +28,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/main']], 
+                    branches: [[name: '*/master']], 
                     userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
                 ])
             }
@@ -37,7 +37,7 @@ pipeline {
         stage(' Unit Testing') {
             steps {
                 sh """
-                echo "Running Unit Tests"
+                printenv
                 """
             }
         }
