@@ -30,18 +30,17 @@ app_check(){
     fi
 }
 
-build_yasm(){
+build_nasm(){
     # Download and compile Yasm
-    cd "${BUILD_DIR}"/build/ffmpeg_sources || exit
-    rm -rf yasm-1.3.0
-    curl -O http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
-    tar xzvf yasm-1.3.0.tar.gz
-    cd yasm-1.3.0 || exit
-    ./configure --prefix="${BUILD_DIR}/build/ffmpeg_build" --bindir="${BUILD_DIR}/bin"
+    cd ~/ffmpeg_sources
+    curl -O -L https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.bz2
+    tar xjvf nasm-2.14.02.tar.bz2
+    cd nasm-2.14.02
+    ./autogen.sh
+    ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin"
     make
     make install
 }
-
 build_libvpx(){
     cd "${BUILD_DIR}"/build/ffmpeg_sources || exit
     git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
@@ -82,7 +81,7 @@ transfer_files(){
 
 prepare_build_environment
 app_check
-build_yasm
+build_nasm
 build_libvpx
 build_ffmpeg
 transfer_files
