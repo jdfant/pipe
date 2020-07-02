@@ -49,7 +49,7 @@ pipeline {
             python --version
             python3 --version
             echo "Checking Gawk version"
-            awk -V|awk 'NR==1 {sub(/,/,"");print $3}'
+            awk -V
             """
         }
     }
