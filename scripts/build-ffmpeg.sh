@@ -41,11 +41,12 @@ build_nasm(){
     make
     make install
 }
+
 build_libvpx(){
     cd "${BUILD_DIR}"/build/ffmpeg_sources || exit
     git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
     cd libvpx || exit
-    ./configure --prefix="${BUILD_DIR}/build/ffmpeg_build" --disable-examples  --as=yasm
+    ./configure --prefix="${BUILD_DIR}/build/ffmpeg_build" --disable-examples  --as=nasm
     PATH="${BUILD_DIR}/bin:${PATH}" make
     make install
 }
