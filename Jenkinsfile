@@ -37,8 +37,9 @@ pipeline {
         stage('Version Testing') {
             steps {
                 sh """
-                echo "Checking Python version"
+                echo "Checking Python versions"
                 python --version
+                python3 --version
                 """
             }
         }
@@ -66,12 +67,7 @@ pipeline {
             }
             steps {
                 sh """
-                echo "This serves no purpose whatsoever"
-                md5sum Jenkinsfile
-                """
-
-                sh """
-                echo "Deploying Code"
+                echo "Deploying Code to nowhere and everywhere, consecutively"
                 """
             }
         }
