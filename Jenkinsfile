@@ -34,7 +34,16 @@ pipeline {
             }
         }
 
-        stage(' Unit Testing') {
+        stage('Version Testing') {
+            steps {
+                sh """
+                echo "Checking Python version"
+                python --version
+                """
+            }
+        }
+
+        stage('Unit Testing') {
             steps {
                 sh """
                 echo "Running Unit Tests"
@@ -46,6 +55,7 @@ pipeline {
             steps {
                 sh """
                 echo "Running Code Analysis"
+                md5sum Jenkinsfile
                 """
             }
         }
@@ -56,6 +66,7 @@ pipeline {
             }
             steps {
                 sh """
+                echo "This serves no purpose whatsoever"
                 md5sum Jenkinsfile
                 """
 
