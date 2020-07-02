@@ -47,8 +47,6 @@ pipeline {
             echo "Checking Python versions"
             python --version
             python3 --version
-            echo "Checking Gawk version"
-            awk -V
             """
         }
     }
