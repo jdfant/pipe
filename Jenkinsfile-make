@@ -33,7 +33,6 @@ pipeline {
         }
     }
 
-/*
     stage('Shell script 0') {
       steps {
         sh '''
@@ -41,7 +40,7 @@ pipeline {
         '''
       }
     }
-*/
+
     stage('Version Testing') {
         steps {
             sh """

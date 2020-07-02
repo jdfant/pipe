@@ -15,14 +15,6 @@ prepare_build_environment(){
 }
 
 app_check(){
-    # Gawk version check. In order for 'inplace={0,1} to function,
-    # gawk version => 4.1.4 MUST be installed.
-    if [[ "$(awk -V|awk 'NR==1 {sub(/,/,"");print $3}')" > 4.1.3 ]]; then
-         echo -n
-    else
-        echo -e "\n!!Gawk Version 4.1.4 or later MUST be installed!!\n"
-        exit 1
-    fi
     # curl and git must be installed for this to work
     if hash curl 2>/dev/null;then
         echo -n
