@@ -56,7 +56,7 @@ pipeline {
             }
             steps {
                 sh """
-                echo "Building Artifact"
+                md5sum Jenkinsfile
                 """
 
                 sh """
