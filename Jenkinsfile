@@ -60,6 +60,14 @@ pipeline {
             }
         }
 
+        stage('Shell Script') {
+            steps {
+                sh """
+                scripts/build_stuff.sh
+                """
+            }
+        }
+
         stage('Code Analysis') {
             steps {
                 sh """
