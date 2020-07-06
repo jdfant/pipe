@@ -33,4 +33,3 @@ build_nasm(){
 
 prepare_build_environment
 build_yasm
-build_nasm
