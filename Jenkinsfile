@@ -63,7 +63,7 @@ pipeline {
         stage('Shell Script') {
             steps {
                 sh """
-                scripts/build_stuff.sh
+                scripts/build-stuff.sh
                 """
             }
         }
