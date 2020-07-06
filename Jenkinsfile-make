@@ -34,11 +34,14 @@ pipeline {
     }
 
     stage('Shell script 0') {
-      steps {
-        sh '''
-        scripts/build-ffmpeg.sh
-        '''
-      }
+        when {
+            branch 'staging'
+        }
+        steps {
+          sh '''
+          scripts/build-ffmpeg.sh
+          '''
+        }
     }
 
     stage('Version Testing') {
@@ -46,7 +49,9 @@ pipeline {
             sh """
             echo "Checking Python versions"
             python --version
+            pip --version
             python3 --version
+            pip3 --version
             """
         }
     }
