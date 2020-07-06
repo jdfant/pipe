@@ -11,12 +11,22 @@ prepare_build_environment(){
     mkdir -p "${BUILD_DIR}"/ffmpeg-skel/usr/bin/
 }
 
+build_yasm(){
+    cd "${BUILD_DIR}"/ffmpeg_sources || exit
+    curl -O -L https://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
+    tar xzvf yasm-1.3.0.tar.gz
+    cd yasm-1.3.0
+    ./configure --prefix="${BUILD_DIR}/ffmpeg_build" --bindir="${BUILD_DIR}/bin"
+    make -j4
+    make install
+}
+
 build_libvpx(){
     cd "${BUILD_DIR}"/ffmpeg_sources || exit
     git -C libvpx pull 2> /dev/null || git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
     cd libvpx
     PATH="${BUILD_DIR}/bin:$PATH" ./configure --prefix="${BUILD_DIR}/ffmpeg_build" --disable-examples --disable-unit-tests --enable-vp9-highbitdepth --as=yasm
-    PATH="${BUILD_DIR}/bin:$PATH" make
+    PATH="${BUILD_DIR}/bin:$PATH" make -j4
     make install
 }
 
@@ -37,11 +47,11 @@ build_ffmpeg(){
     --bindir="${BUILD_DIR}/bin" \
     --enable-gpl \
     --enable-libvpx
-    make
+    make -j4
     make install
 }
 
 prepare_build_environment
+build_yasm
 build_libvpx
 build_ffmpeg
-transfer_files
