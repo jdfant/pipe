@@ -34,19 +34,24 @@ pipeline {
             }
         }
 
-        stage('Version Testing') {
+        stage('Python Version Testing') {
             steps {
                 sh """
-                echo "Checking Python versions"
+                echo "Checking Python2 & PIP2 versions"
                 python --version
                 pip --version
+                echo "Checking Python3 & PIP3 versions"
                 python3 --version
                 pip3 --version
+                echo "Checking Python 2 modules"
+                pydoc modules
+                echo "Checking Python 3 modules"
+                pydoc3 modules
                 """
             }
         }
 
-        stage('Unit Testing') {
+        stage('NPM Testing') {
             steps {
                 sh """
                 echo "Simple NPM config test"
