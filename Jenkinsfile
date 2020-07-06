@@ -71,11 +71,11 @@ pipeline {
 
         stage('Build Deploy Code') {
             when {
-                branch 'develop'
+                branch 'master'
             }
             steps {
                 sh """
-                echo "Deploying Code to nowhere and everywhere, consecutively"
+                echo -e "Deploying Code to nowhere AND everywhere.\nSo OMNI!"
                 """
             }
         }
