@@ -51,8 +51,6 @@ pipeline {
                 sh """
                 echo "Simple NPM config test"
                 npm config ls -l
-                echo "NPM Test"
-                npm test
                 """
             }
         }
