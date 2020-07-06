@@ -39,7 +39,9 @@ pipeline {
                 sh """
                 echo "Checking Python versions"
                 python --version
+                pip --version
                 python3 --version
+                pip3 --version
                 """
             }
         }
@@ -47,7 +49,10 @@ pipeline {
         stage('Unit Testing') {
             steps {
                 sh """
-                echo "Running Unit Tests"
+                echo "Simple NPM config test"
+                npm config ls -l
+                echo "NPM Test"
+                npm test
                 """
             }
         }
