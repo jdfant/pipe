@@ -2,7 +2,7 @@ pipeline {
   
   agent {
       node {
-          label 'agent1'
+          label 'Standard-Builder'
       }
   }
 
