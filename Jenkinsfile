@@ -27,7 +27,7 @@ pipeline {
       steps {
           checkout([
               $class: 'GitSCM',
-              branches: [[name: '*/staging']],
+              branches: [[name: '*/develop']],
               userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
           ])
       }
@@ -73,7 +73,7 @@ pipeline {
     stage('Build Deploy Code') {
         steps {
             sh """
-            echo "Deploying Code to nowhere and everywhere, consecutively"
+            echo "Deploying Code to nowhere and everywhere"
             """
         }
     }
