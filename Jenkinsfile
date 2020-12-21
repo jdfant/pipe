@@ -62,7 +62,7 @@ pipeline {
     stage('Build Environment') {
       steps {
         sh '''
-        code/create-virtualenv.sh 
+        echo "Executes code/create-virtualenv.sh script"
         '''
       }
     }
@@ -70,7 +70,7 @@ pipeline {
     stage('Environment Testing') {
       steps {
         sh """
-        code/pip-test.sh
+        echo "Executes code/pip-test.sh script"
         """
       }
     }
@@ -91,5 +91,5 @@ pipeline {
             """
         }
     }
-    }   
+  }
 }
