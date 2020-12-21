@@ -23,11 +23,25 @@ pipeline {
       }
     }
 
-    stage('Code Checkout') {
+    stage('Code Checkout Develop') {
+            when { branch 'develop'
+      }
       steps {
           checkout([
               $class: 'GitSCM',
               branches: [[name: '*/develop']],
+              userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
+          ])
+      }
+    }
+
+    stage('Code Checkout Staging') {
+            when { branch 'staging'
+      }
+      steps {
+          checkout([
+              $class: 'GitSCM',
+              branches: [[name: '*/staging']],
               userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
           ])
       }
