@@ -23,11 +23,25 @@ pipeline {
       }
     }
 
-    stage('Code Checkout') {
+    stage('Code Checkout Develop') {
+            when { branch 'develop'
+      }
       steps {
           checkout([
               $class: 'GitSCM',
               branches: [[name: '*/develop']],
+              userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
+          ])
+      }
+    }
+
+    stage('Code Checkout Staging') {
+            when { branch 'staging'
+      }
+      steps {
+          checkout([
+              $class: 'GitSCM',
+              branches: [[name: '*/staging']],
               userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
           ])
       }
@@ -48,7 +62,7 @@ pipeline {
     stage('Build Environment') {
       steps {
         sh '''
-        code/create-virtualenv.sh 
+        echo "Executes code/create-virtualenv.sh script"
         '''
       }
     }
@@ -56,7 +70,7 @@ pipeline {
     stage('Environment Testing') {
       steps {
         sh """
-        code/pip-test.sh
+        echo "Executes code/pip-test.sh script"
         """
       }
     }
@@ -65,7 +79,6 @@ pipeline {
         steps {
             sh """
             echo "Running Code Analysis"
-            md5sum Jenkinsfile
             """
         }
     }
@@ -77,5 +90,5 @@ pipeline {
             """
         }
     }
-    }   
+ }
 }
