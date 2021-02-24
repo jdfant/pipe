@@ -78,17 +78,10 @@ pipeline {
     stage('Code Analysis') {
         steps {
             sh """
-            echo "Running Code Analysis"
+            echo "Running Code Analysis, well ..... not really :)"
             """
         }
     }
 
-    stage('Build Deploy Code') {
-        steps {
-            sh """
-            echo "Deploying Code to nowhere and everywhere"
-            """
-        }
-    }
  }
 }
