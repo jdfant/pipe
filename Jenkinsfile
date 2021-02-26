@@ -79,7 +79,6 @@ pipeline {
         steps {
             sh """
             echo "Running Code Analysis, well ..... not really :)"
-            """
         }
     }
 
