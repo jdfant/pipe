@@ -78,7 +78,7 @@ pipeline {
     stage('Code Analysis') {
         steps {
             sh """
-            echo "Running Code Analysis, well ..... not really :)"
+            echo "Running Code Analysis, well ..... not really"
             """
         }
     }
