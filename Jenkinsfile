@@ -23,25 +23,11 @@ pipeline {
       }
     }
 
-    stage('Code Checkout Develop') {
-            when { branch 'develop'
-      }
+    stage('Code Checkout') {
       steps {
           checkout([
               $class: 'GitSCM',
-              branches: [[name: '*/develop']],
-              userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
-          ])
-      }
-    }
-
-    stage('Code Checkout Staging') {
-            when { branch 'staging'
-      }
-      steps {
-          checkout([
-              $class: 'GitSCM',
-              branches: [[name: '*/staging']],
+              branches: [[name: '*/master']],
               userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
           ])
       }
@@ -52,9 +38,7 @@ pipeline {
           sh """
           echo "Checking versions"
           python --version
-          python3 --version
           pip --version
-          pip3 --version
           """
       }
     }
@@ -62,7 +46,7 @@ pipeline {
     stage('Build Environment') {
       steps {
         sh '''
-        echo "Executes code/create-virtualenv.sh script"
+        code/create-virtualenv.sh 
         '''
       }
     }
@@ -70,18 +54,9 @@ pipeline {
     stage('Environment Testing') {
       steps {
         sh """
-        echo "Executes code/pip-test.sh script"
+        code/pip-test.sh
         """
       }
     }
 
-    stage('Code Analysis') {
-        steps {
-            sh """
-            echo "Running Code Analysis, well ..... not really :)"
-            """
-        }
-    }
-
- }
 }
