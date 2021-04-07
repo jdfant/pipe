@@ -1,7 +1,7 @@
 #!/bin/bash
 
     cd VIRTUALENV
-    python3 -m venv $(pwd)
+    python -m venv $(pwd)
     source bin/activate
 
     pytest

@@ -27,7 +27,7 @@ pipeline {
       steps {
           checkout([
               $class: 'GitSCM',
-              branches: [[name: '*/develop']],
+              branches: [[name: '*/master']],
               userRemoteConfigs: [[url: 'https://github.com/jdfant/pipe.git']]
           ])
       }
@@ -38,9 +38,7 @@ pipeline {
           sh """
           echo "Checking versions"
           python --version
-          python3 --version
           pip --version
-          pip3 --version
           """
       }
     }
@@ -61,21 +59,4 @@ pipeline {
       }
     }
 
-    stage('Code Analysis') {
-        steps {
-            sh """
-            echo "Running Code Analysis"
-            md5sum Jenkinsfile
-            """
-        }
-    }
-
-    stage('Build Deploy Code') {
-        steps {
-            sh """
-            echo "Deploying Code to nowhere and everywhere"
-            """
-        }
-    }
-    }   
 }
